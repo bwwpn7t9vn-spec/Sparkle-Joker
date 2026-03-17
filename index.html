@@ -1,108 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sparkle Joker | Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --accent:#ff2e88;
-  --accent2:#6a00ff;
-  --bg:#0f0f1a;
-  --glass:rgba(255,255,255,0.08);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'Inter',sans-serif;
-  background:linear-gradient(135deg,#0f0f1a,#1a0033);
-  color:#fff;
-  overflow-x:hidden;
-}
-header{
-  padding:40px 20px;
-  text-align:center;
-}
-h1{
-  font-family:'Orbitron',sans-serif;
-  font-size:clamp(32px,6vw,48px);
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.card{
-  background:var(--glass);
-  backdrop-filter:blur(12px);
-  border-radius:20px;
-  padding:30px;
-  margin:20px auto;
-  max-width:800px;
-  box-shadow:0 0 40px rgba(255,0,150,0.3);
-  transition:0.4s;
-}
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 60px rgba(106,0,255,0.6);
-}
-nav{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  flex-wrap:wrap;
-  margin-top:30px;
-}
-nav a{
-  text-decoration:none;
-  padding:12px 22px;
-  border-radius:30px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  color:white;
-  font-weight:600;
-  transition:0.3s;
-}
-nav a:hover{
-  transform:scale(1.05);
-}
-footer{
-  text-align:center;
-  padding:30px;
-  font-size:14px;
-  opacity:0.7;
-}
-@media(max-width:600px){
-  .card{margin:15px;}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sparkle Joker | Official Website</title>
+  <meta name="description" content="Official website for Sparkle Joker by Milana Hnaten." />
+  <style>
+    :root{
+      --bg-1:#060816;
+      --bg-2:#0d1635;
+      --bg-3:#13265c;
+      --card:rgba(255,255,255,.08);
+      --card-border:rgba(255,255,255,.14);
+      --text:#f6f8ff;
+      --muted:#b8c1e0;
+      --accent:#ff3f93;
+      --accent-2:#6f7cff;
+      --accent-3:#45d0ff;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(69,208,255,.18), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(255,63,147,.18), transparent 25%),
+        radial-gradient(circle at 70% 80%, rgba(111,124,255,.20), transparent 30%),
+        linear-gradient(135deg,var(--bg-1),var(--bg-2) 45%,var(--bg-3));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    .bg-grid{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size:28px 28px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.9), rgba(0,0,0,.3));
+    }
+
+    .glow{
+      position:fixed;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.18;
+      pointer-events:none;
+      z-index:0;
+      animation:floatGlow 10s ease-in-out infinite;
+    }
+    .glow.one{background:var(--accent); top:-120px; left:-120px;}
+    .glow.two{background:var(--accent-2); right:-140px; top:180px; animation-delay: -3s;}
+    .glow.three{background:var(--accent-3); left:25%; bottom:-180px; animation-delay: -6s;}
+
+    @keyframes floatGlow{
+      0%,100%{transform:translateY(0) translateX(0) scale(1)}
+      50%{transform:translateY(18px) translateX(10px) scale(1.06)}
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      width:min(100%, var(--max));
+      margin:0 auto;
+      padding:20px;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      padding-top:14px;
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border:1px solid var(--card-border);
+      border-radius:999px;
+      background:rgba(8,12,28,.65);
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      box-shadow:0 10px 30px rgba(255,63,147,.35);
+      flex:0 0 auto;
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:15px;
+      line-height:1.1;
+    }
+
+    .brand-text span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .menu{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:10px;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      transition:.25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      transform:translateY(-1px);
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      border-color:transparent;
+      box-shadow:0 14px 30px rgba(111,124,255,.22);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:24px;
+      align-items:stretch;
+      padding:34px 0 16px;
+    }
+
+    .panel{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+    }
+
+    .hero-main{
+      padding:34px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      color:#e8ecff;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      margin-bottom:18px;
+    }
+
+    h1{
+      margin:0 0 16px;
+      font-size:clamp(34px,6vw,70px);
+      line-height:.95;
+      letter-spacing:-.03em;
+    }
+
+    .gradient{
+      background:linear-gradient(135deg,#ffffff 10%, #dce6ff 35%, #97dfff 58%, #ff8dc2 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.7;
+      max-width:760px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:24px;
+    }
+
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:15px;
+      transition:.25s ease;
+    }
+
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 16px 34px rgba(111,124,255,.28);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .hero-side{
+      padding:24px;
+      display:grid;
+      gap:16px;
+    }
+
+    .mini-card{
+      padding:18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .mini-card h3{
+      margin:0 0 10px;
+      font-size:17px;
+    }
+
+    .mini-card p{
+      font-size:14px;
+      line-height:1.6;
+      color:var(--muted);
+      margin:0;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:8px;
+    }
+
+    .stat{
+      padding:22px;
+      text-align:center;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:28px;
+      margin-bottom:6px;
+    }
+
+    .stat span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .section{
+      margin-top:22px;
+      padding:28px;
+    }
+
+    .section h2{
+      margin:0 0 12px;
+      font-size:28px;
+      letter-spacing:-.02em;
+    }
+
+    .section p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:16px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+      margin-top:22px;
+    }
+
+    .feature-list{
+      display:grid;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .feature{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:16px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .feature-icon{
+      width:38px;
+      height:38px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      font-weight:800;
+    }
+
+    .feature h3{
+      margin:0 0 6px;
+      font-size:16px;
+    }
+
+    .feature p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .footer{
+      padding:26px 0 34px;
+      color:var(--muted);
+      font-size:14px;
+      text-align:center;
+    }
+
+    @media (max-width: 980px){
+      .hero,
+      .grid-2{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 720px){
+      .wrap{padding:14px}
+      .nav-inner{
+        border-radius:24px;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .menu{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .menu a{
+        flex:1 1 calc(50% - 10px);
+        text-align:center;
+      }
+      .hero-main{padding:24px}
+      .hero-side{padding:18px}
+      .section{padding:22px}
+      .stats{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="bg-grid"></div>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="glow three"></div>
 
-<header>
-  <h1>Sparkle Joker</h1>
-  <p>Crafted by Milana Hnaten</p>
-</header>
+  <div class="wrap">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="brand-badge">SJ</div>
+          <div class="brand-text">
+            <strong>Sparkle Joker</strong>
+            <span>Official developer information page</span>
+          </div>
+        </div>
 
-<div class="card">
-  <h2>About the Developer</h2>
-  <p>Hello! My name is <strong>Milana Hnaten</strong>, and I am an independent iOS developer.  
-  I am passionate about creating engaging and visually appealing mobile experiences.</p>
-  <p>This website is created to provide full transparency for App Store users and Apple moderators.</p>
-</div>
+        <nav class="menu">
+          <a href="index.html" class="active">Home</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="support.html">Support</a>
+          <a href="marketing.html">Marketing</a>
+        </nav>
+      </div>
+    </div>
 
-<div class="card">
-  <h2>About the Application</h2>
-  <p><strong>Sparkle Joker</strong> is designed to deliver a smooth and entertaining user experience.  
-  The app is built with performance, design, and simplicity in mind.</p>
-</div>
+    <section class="hero">
+      <div class="panel hero-main">
+        <div class="eyebrow">Independent iOS Developer • Transparent App Presence</div>
+        <h1><span class="gradient">Sparkle Joker</span></h1>
+        <p>
+          Welcome to the official website for <strong>Sparkle Joker</strong>. This website was created to provide a clear,
+          transparent, and trustworthy overview of the app, the developer account, and support information for both
+          App Store reviewers and users.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="privacy.html">Read Privacy Policy</a>
+          <a class="btn btn-secondary" href="support.html">Get Support</a>
+          <a class="btn btn-secondary" href="marketing.html">Learn More</a>
+        </div>
+      </div>
 
-<nav>
-  <a href="privacy.html">Privacy Policy</a>
-  <a href="support.html">Support</a>
-  <a href="marketing.html">Marketing</a>
-</nav>
+      <div class="panel hero-side">
+        <div class="mini-card">
+          <h3>Developer</h3>
+          <p><strong>Milana Hnaten</strong><br>Independent developer focused on creating simple, engaging, and visually polished mobile experiences.</p>
+        </div>
+        <div class="mini-card">
+          <h3>Contact</h3>
+          <p><a href="mailto:grricajyaroslavka533@gmail.com" style="color:#fff;">grricajyaroslavka533@gmail.com</a><br>Primary support and communication email.</p>
+        </div>
+        <div class="mini-card">
+          <h3>App Focus</h3>
+          <p>Entertainment-oriented experience with attention to usability, lightweight performance, and a clean presentation.</p>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  © 2025 Milana Hnaten • Contact: grricajyaroslavka533@gmail.com
-</footer>
+    <section class="stats">
+      <div class="panel stat">
+        <strong>0</strong>
+        <span>User data collected</span>
+      </div>
+      <div class="panel stat">
+        <strong>100%</strong>
+        <span>Direct contact transparency</span>
+      </div>
+      <div class="panel stat">
+        <strong>1</strong>
+        <span>Independent developer</span>
+      </div>
+    </section>
 
+    <section class="grid-2">
+      <div class="panel section">
+        <h2>About the Developer</h2>
+        <p>
+          I am <strong>Milana Hnaten</strong>, an independent developer who is actively growing in mobile app development.
+          My goal is to build products that feel accessible, enjoyable, and reliable. I care about clarity, presentation,
+          and honest communication with users. This website is part of that commitment to openness.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature">
+            <div class="feature-icon">01</div>
+            <div>
+              <h3>Clear communication</h3>
+              <p>Users and reviewers can easily find privacy details, support information, and project context in one place.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">02</div>
+            <div>
+              <h3>Independent development</h3>
+              <p>The app is being developed with personal attention to design, quality, and future improvement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel section">
+        <h2>About the Application</h2>
+        <p>
+          <strong>Sparkle Joker</strong> is presented as a lightweight entertainment app. The intention behind the product
+          is to create a pleasant user experience with a simple interface and visually appealing interaction. The project
+          is being improved over time with attention to quality and user feedback.
+        </p>
+
+        <div class="feature-list">
+          <div class="feature">
+            <div class="feature-icon">03</div>
+            <div>
+              <h3>User-first presentation</h3>
+              <p>The website and app description are designed to make the purpose of the app easy to understand.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">04</div>
+            <div>
+              <h3>Future updates planned</h3>
+              <p>The project may expand with additional features, refinements, and monetization options in the future.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <h2>Why This Website Exists</h2>
+      <p>
+        This website serves as the official public information space connected to the developer account and the app.
+        It helps demonstrate transparency regarding privacy practices, support access, and the overall purpose of
+        the project. It is intended to make the app ecosystem more understandable for anyone reviewing or using it.
+      </p>
+    </section>
+
+    <div class="footer">
+      © 2025 Milana Hnaten • Sparkle Joker • Official contact: grricajyaroslavka533@gmail.com
+    </div>
+  </div>
 </body>
 </html>
