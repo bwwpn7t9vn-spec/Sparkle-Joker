@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sparkle Joker | Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#ff2e88;
+  --accent2:#6a00ff;
+  --bg:#0f0f1a;
+  --glass:rgba(255,255,255,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#0f0f1a,#1a0033);
+  color:#fff;
+  overflow-x:hidden;
+}
+header{
+  padding:40px 20px;
+  text-align:center;
+}
+h1{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(32px,6vw,48px);
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.card{
+  background:var(--glass);
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  padding:30px;
+  margin:20px auto;
+  max-width:800px;
+  box-shadow:0 0 40px rgba(255,0,150,0.3);
+  transition:0.4s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 60px rgba(106,0,255,0.6);
+}
+nav{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-top:30px;
+}
+nav a{
+  text-decoration:none;
+  padding:12px 22px;
+  border-radius:30px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:white;
+  font-weight:600;
+  transition:0.3s;
+}
+nav a:hover{
+  transform:scale(1.05);
+}
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:14px;
+  opacity:0.7;
+}
+@media(max-width:600px){
+  .card{margin:15px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sparkle Joker</h1>
+  <p>Crafted by Milana Hnaten</p>
+</header>
+
+<div class="card">
+  <h2>About the Developer</h2>
+  <p>Hello! My name is <strong>Milana Hnaten</strong>, and I am an independent iOS developer.  
+  I am passionate about creating engaging and visually appealing mobile experiences.</p>
+  <p>This website is created to provide full transparency for App Store users and Apple moderators.</p>
+</div>
+
+<div class="card">
+  <h2>About the Application</h2>
+  <p><strong>Sparkle Joker</strong> is designed to deliver a smooth and entertaining user experience.  
+  The app is built with performance, design, and simplicity in mind.</p>
+</div>
+
+<nav>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="support.html">Support</a>
+  <a href="marketing.html">Marketing</a>
+</nav>
+
+<footer>
+  © 2025 Milana Hnaten • Contact: grricajyaroslavka533@gmail.com
+</footer>
+
+</body>
+</html>
