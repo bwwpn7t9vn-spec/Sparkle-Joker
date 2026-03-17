@@ -1,54 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Marketing | Sparkle Joker</title>
-<style>
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:linear-gradient(135deg,#2b1055,#7597de);
-  color:white;
-  padding:30px;
-}
-.container{
-  max-width:800px;
-  margin:auto;
-  background:rgba(0,0,0,0.4);
-  padding:40px;
-  border-radius:25px;
-}
-h1{text-align:center;}
-a{color:#fff;}
-nav{
-  margin-top:30px;
-  text-align:center;
-}
-nav a{
-  margin:0 10px;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketing | Sparkle Joker</title>
+  <meta name="description" content="Marketing page for Sparkle Joker." />
+  <style>
+    :root{
+      --bg-1:#060816;
+      --bg-2:#0d1635;
+      --bg-3:#13265c;
+      --card:rgba(255,255,255,.08);
+      --card-border:rgba(255,255,255,.14);
+      --text:#f6f8ff;
+      --muted:#b8c1e0;
+      --accent:#ff3f93;
+      --accent-2:#6f7cff;
+      --accent-3:#45d0ff;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(69,208,255,.18), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(255,63,147,.18), transparent 25%),
+        radial-gradient(circle at 70% 80%, rgba(111,124,255,.20), transparent 30%),
+        linear-gradient(135deg,var(--bg-1),var(--bg-2) 45%,var(--bg-3));
+      overflow-x:hidden;
+    }
+
+    .bg-grid{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size:28px 28px;
+    }
+
+    .glow{
+      position:fixed;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      filter:blur(70px);
+      opacity:.18;
+      pointer-events:none;
+      z-index:0;
+      animation:floatGlow 10s ease-in-out infinite;
+    }
+    .glow.one{background:var(--accent); top:-120px; left:-120px;}
+    .glow.two{background:var(--accent-2); right:-140px; top:180px; animation-delay:-3s;}
+    .glow.three{background:var(--accent-3); left:25%; bottom:-180px; animation-delay:-6s;}
+
+    @keyframes floatGlow{
+      0%,100%{transform:translateY(0) translateX(0) scale(1)}
+      50%{transform:translateY(18px) translateX(10px) scale(1.06)}
+    }
+
+    .wrap{
+      position:relative;
+      z-index:1;
+      width:min(100%, var(--max));
+      margin:0 auto;
+      padding:20px;
+    }
+
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:20;
+      padding-top:14px;
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border:1px solid var(--card-border);
+      border-radius:999px;
+      background:rgba(8,12,28,.65);
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .brand-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      flex:0 0 auto;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:15px;
+      line-height:1.1;
+    }
+
+    .brand-text span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .menu{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:flex-end;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:var(--text);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:600;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      transition:.25s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active{
+      transform:translateY(-1px);
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      border-color:transparent;
+      box-shadow:0 14px 30px rgba(111,124,255,.22);
+    }
+
+    .hero{
+      padding:34px 0 14px;
+    }
+
+    .panel{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+    }
+
+    .hero-box,
+    .content-box{
+      padding:30px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      color:#e8ecff;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      margin-bottom:16px;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(32px,6vw,60px);
+      line-height:1;
+      letter-spacing:-.03em;
+      background:linear-gradient(135deg,#ffffff 10%, #dce6ff 35%, #97dfff 58%, #ff8dc2 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .subtitle{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.7;
+      max-width:860px;
+    }
+
+    .content-box{
+      margin-top:22px;
+      display:grid;
+      gap:18px;
+    }
+
+    .item{
+      padding:22px;
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.09);
+    }
+
+    .item h2{
+      margin:0 0 10px;
+      font-size:20px;
+    }
+
+    .item p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.75;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .btn{
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:48px;
+      padding:0 18px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:15px;
+      transition:.25s ease;
+    }
+
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      box-shadow:0 16px 34px rgba(111,124,255,.28);
+    }
+
+    .btn-secondary{
+      color:var(--text);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .footer{
+      padding:26px 0 34px;
+      color:var(--muted);
+      font-size:14px;
+      text-align:center;
+    }
+
+    @media (max-width: 720px){
+      .wrap{padding:14px}
+      .nav-inner{
+        border-radius:24px;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .menu{
+        width:100%;
+        justify-content:flex-start;
+      }
+      .menu a{
+        flex:1 1 calc(50% - 10px);
+        text-align:center;
+      }
+      .hero-box,.content-box{padding:22px}
+    }
+  </style>
 </head>
 <body>
+  <div class="bg-grid"></div>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+  <div class="glow three"></div>
 
-<div class="container">
-<h1>Sparkle Joker</h1>
+  <div class="wrap">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="brand-badge">SJ</div>
+          <div class="brand-text">
+            <strong>Sparkle Joker</strong>
+            <span>Project and developer overview</span>
+          </div>
+        </div>
 
-<p>I am a beginner independent developer, and Sparkle Joker is created with dedication and passion.</p>
+        <nav class="menu">
+          <a href="index.html">Home</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="support.html">Support</a>
+          <a href="marketing.html" class="active">Marketing</a>
+        </nav>
+      </div>
+    </div>
 
-<p>Currently, the app does not include paid features or subscriptions.  
-In the future, monetization options may be introduced to support further development.</p>
+    <section class="hero">
+      <div class="panel hero-box">
+        <div class="eyebrow">About the Project</div>
+        <h1>Marketing Information</h1>
+        <p class="subtitle">
+          This page provides additional context about the app, the developer’s goals, and the direction of the project.
+          It is intended to present Sparkle Joker openly and honestly.
+        </p>
+      </div>
+    </section>
 
-<p>My goal is to continuously improve the app, deliver value to users, and create a unique and enjoyable experience.</p>
+    <section class="panel content-box">
+      <div class="item">
+        <h2>Independent Development Journey</h2>
+        <p>
+          Sparkle Joker is being developed by a beginner independent developer who is actively building experience and improving skills.
+          The app reflects personal effort, learning, and a strong motivation to create a polished mobile product.
+        </p>
+      </div>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="privacy.html">Privacy Policy</a>
-<a href="support.html">Support</a>
-</nav>
+      <div class="item">
+        <h2>Current App Model</h2>
+        <p>
+          At the current stage, the app does not include paid features or subscription plans. It is presented without monetization features
+          enabled at this time.
+        </p>
+      </div>
 
-</div>
+      <div class="item">
+        <h2>Future Monetization</h2>
+        <p>
+          In the future, monetization options such as premium features or subscriptions may be introduced. The purpose of those changes
+          would be to support continued development, maintenance, and improvement of the app.
+        </p>
+      </div>
 
+      <div class="item">
+        <h2>Value and Quality</h2>
+        <p>
+          The goal is not only to publish an app, but also to provide value through thoughtful presentation, a pleasant user experience,
+          and ongoing refinement. The project is being approached with care and seriousness.
+        </p>
+      </div>
+
+      <div class="item">
+        <h2>Transparency for Users and Review</h2>
+        <p>
+          This website is part of the effort to create a clear public-facing presence for the app and the developer account.
+          Users and reviewers can easily understand who is behind the project, how privacy is handled, and how support can be reached.
+        </p>
+      </div>
+
+      <div class="item">
+        <h2>Long-Term Direction</h2>
+        <p>
+          The long-term direction includes improving the app’s quality, expanding its capabilities when appropriate, and making the project
+          more mature over time while preserving clarity and trust.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="index.html">Home</a>
+        <a class="btn btn-secondary" href="privacy.html">Privacy Policy</a>
+        <a class="btn btn-secondary" href="support.html">Support</a>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2025 Milana Hnaten • Sparkle Joker • Project overview and future direction
+    </div>
+  </div>
 </body>
 </html>
