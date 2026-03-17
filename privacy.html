@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | Sparkle Joker</title>
+<style>
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(120deg,#000428,#004e92);
+  color:white;
+  padding:20px;
+}
+.container{
+  max-width:800px;
+  margin:auto;
+  background:rgba(255,255,255,0.08);
+  padding:30px;
+  border-radius:20px;
+  backdrop-filter:blur(10px);
+}
+h1{text-align:center;}
+button{
+  margin-top:30px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:#ff2e88;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  width:100%;
+}
+button:hover{opacity:0.8;}
+a{color:#fff;}
+</style>
+<script>
+function closeWebView(){
+  if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.closeWebView) {
+      window.webkit.messageHandlers.closeWebView.postMessage(null);
+  } else {
+      window.close();
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="container">
+<h1>Privacy Policy</h1>
+
+<p>Effective Date: 2025</p>
+
+<p>Sparkle Joker does <strong>not collect, store, process, or share</strong> any personal or non-personal user data.</p>
+
+<p>The application operates fully offline and does not require account creation, analytics tracking, or third-party data sharing.</p>
+
+<p>We respect user privacy and are committed to maintaining full transparency.</p>
+
+<p>If you have questions, contact:  
+<strong>grricajyaroslavka533@gmail.com</strong></p>
+
+<button onclick="closeWebView()">Close Policy</button>
+
+<p style="margin-top:20px;"><a href="index.html">Back to Home</a></p>
+
+</div>
+
+</body>
+</html>
